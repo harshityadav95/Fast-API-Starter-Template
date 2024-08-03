@@ -1,17 +1,9 @@
 # Use the official Python 3.12 slim image as the base
-FROM python:3.12-slim
+FROM python:3.12-alpine
 
 # Set the working directory inside the container to /app
 WORKDIR /app
 
-# Copy all files and directories from the current directory (on the host)
-# to the working directory inside the container (/app)
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    software-properties-common \
-    git \
-    && rm -rf /var/lib/apt/lists/*
 
 # As this has all the code which is what changes most frequently the Docker cache won't be used for this or any following steps easily. 
 COPY . .
